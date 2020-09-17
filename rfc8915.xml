@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <!DOCTYPE rfc SYSTEM "rfc2629-xhtml.ent">
-<rfc 
-xmlns:xi="http://www.w3.org/2001/XInclude" 
-submissionType="IETF" 
-category="std" 
-consensus="true" 
-docName="draft-ietf-ntp-using-nts-for-ntp-28" 
-number="8915" 
-ipr="trust200902" 
-obsoletes="" 
-updates="" 
-xml:lang="en" 
-tocInclude="true" 
-tocDepth="3" 
-symRefs="true" 
-sortRefs="true" 
+<rfc
+xmlns:xi="http://www.w3.org/2001/XInclude"
+submissionType="IETF"
+category="std"
+consensus="true"
+docName="draft-ietf-ntp-using-nts-for-ntp-28"
+number="8915"
+ipr="trust200902"
+obsoletes=""
+updates=""
+xml:lang="en"
+tocInclude="true"
+tocDepth="3"
+symRefs="true"
+sortRefs="true"
 version="3">
 
   <!-- xml2rfc v2v3 conversion 2.43.0 -->
@@ -98,33 +98,12 @@ version="3">
         cryptographic security for the client-server mode of the
         Network Time Protocol (NTP).
       </t>
-<!-- [rfced] FYI, we updated the abstract by expanding/adding the 
-names of the sub-protocols.
-
-Original:
-
-   The first (NTS-KE) handles initial authentication and key
-   establishment over TLS.  The second handles encryption and
-   authentication during NTP time synchronization via extension fields
-   in the NTP packets, and holds all required state only on the client
-   via opaque cookies.
-
-Current:
-
-   NTS is structured as a suite of two loosely coupled sub-protocols.
-   The first (NTS Key Establishment (NTS-KE)) handles initial
-   authentication and key establishment over TLS.  The second (NTS
-   Extension Fields for NTPv4) handles encryption and authentication
-   during NTP time synchronization via extension fields in the NTP
-   packets, and holds all required state only on the client via opaque
-   cookies.
--->
       <t>
-        NTS is structured as a suite of two loosely coupled sub-protocols. 
-        The first (NTS Key Establishment (NTS-KE)) handles initial authentication and key 
-        establishment over TLS. The second (NTS Extension Fields for NTPv4) handles encryption and 
-        authentication during NTP time synchronization via extension fields in the 
-        NTP packets, and holds all required state only on the 
+        NTS is structured as a suite of two loosely coupled sub-protocols.
+        The first (NTS Key Establishment (NTS-KE)) handles initial authentication and key
+        establishment over TLS. The second (NTS Extension Fields for NTPv4) handles encryption and
+        authentication during NTP time synchronization via extension fields in the
+        NTP packets, and holds all required state only on the
         client via opaque cookies.
       </t>
     </abstract>
@@ -201,11 +180,6 @@ Current:
 	    </li>
         </ul>
       </section>
-
-<!-- [rfced] FYI, we moved the Terms section from the appendix 
-to Section 1.2. Please let us know if you prefer otherwise.
--->
-
     <section numbered="true" toc="default">
       <name>Terms and Abbreviations</name>
       <dl newline="false" spacing="normal" indent="11">
@@ -257,7 +231,7 @@ to Section 1.2. Please let us know if you prefer otherwise.
         <name>Protocol Overview</name>
         <t>
           The Network Time Protocol includes many different operating modes to
-          support various network topologies (see RFC 5905, Section 
+          support various network topologies (see RFC 5905, Section
           <xref target="RFC5905" section="3" sectionFormat="bare" format="default"/>
           <xref target="RFC5905" format="default"/>). In addition to its best-known and
           most-widely-used client-server mode, it also includes modes for
@@ -268,7 +242,7 @@ to Section 1.2. Please let us know if you prefer otherwise.
           authentication and mutual replay protection. Additionally, for certain
           message types, the control mode may require confidentiality as well as
           authentication. Client-server mode places more stringent requirements
-          on resource utilization than other modes because servers may have
+          on resource utilization than other modes because servers may have a
           vast number of clients and be unable to afford to maintain per-client
           state. However, client-server mode also has more relaxed security
           needs because only the client requires replay protection: it is
@@ -285,23 +259,6 @@ to Section 1.2. Please let us know if you prefer otherwise.
 
         </t>
         <ul empty="true" spacing="normal">
-<!-- [rfced] FYI, we have updated the following to match the 
-phrase used in the rest of the document ("NTS Extensions"
-to "NTS Extension Fields").
-
-Original:
-
-   The "NTS Extensions for NTPv4" define a collection of NTP
-   extension fields for cryptographically securing NTPv4 using
-   previously-established key material.
-
-Current:
-
-   The "NTS Extension Fields for NTPv4" define a collection of 
-   NTP extension fields for cryptographically securing NTPv4 
-   using previously-established key material.
-
--->
           <li>
               The "NTS Extension Fields for NTPv4" define a collection of NTP
               extension fields for cryptographically securing NTPv4 using
@@ -346,12 +303,9 @@ Current:
           the NTS-KE handshake.  The NTP server uses the cookie to recover this
           key material and send back an authenticated response. The response
           includes a fresh, encrypted cookie that the client then sends back in
-          the clear in a subsequent request.</t>
-          <aside>
-           <t>This constant refreshing of
-              cookies is necessary in order to achieve NTS's unlinkability goal.
-           </t>
-          </aside>
+          the clear in a subsequent request. This constant refreshing of cookies
+          is necessary in order to achieve NTS's unlinkability goal.
+        </t>
         <t>
           <xref target="protocol-overview" format="default"/> provides an overview of the
           high-level interaction between the client, the NTS-KE server, and the
@@ -400,9 +354,9 @@ Current:
     <section numbered="true" toc="default">
       <name>Requirements Language</name>
       <t>
-        The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>", 
+        The key words "<bcp14>MUST</bcp14>", "<bcp14>MUST NOT</bcp14>",
         "<bcp14>REQUIRED</bcp14>", "<bcp14>SHALL</bcp14>", "<bcp14>SHALL NOT</bcp14>",
-        "<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD NOT</bcp14>", "<bcp14>RECOMMENDED</bcp14>", 
+        "<bcp14>SHOULD</bcp14>", "<bcp14>SHOULD NOT</bcp14>", "<bcp14>RECOMMENDED</bcp14>",
         "<bcp14>NOT RECOMMENDED</bcp14>", "<bcp14>MAY</bcp14>", and
         "<bcp14>OPTIONAL</bcp14>" in this document are to be interpreted as described in
         BCP 14 <xref target="RFC2119" format="default"/> <xref target="RFC8174" format="default"/> when,
@@ -418,8 +372,8 @@ Current:
         Since the NTS protocol is new as of this publication, no
         backward-compatibility concerns exist to justify using
         obsolete, insecure, or otherwise broken TLS features or
-        versions. Implementations <bcp14>MUST</bcp14> conform with 
-        <xref target="RFC7525" format="default">RFC 7525</xref> or 
+        versions. Implementations <bcp14>MUST</bcp14> conform with
+        <xref target="RFC7525" format="default">RFC 7525</xref> or
         with a later revision of BCP 195.
       </t>
       <t>
@@ -459,7 +413,7 @@ Current:
         as Application Data encapsulated in the TLS-protected channel. Then, the
         server <bcp14>SHALL</bcp14> send a single response. After sending their respective
         request and response, the client and server <bcp14>SHALL</bcp14> send TLS
-        "close_notify" alerts in accordance with RFC 8446, Section 
+        "close_notify" alerts in accordance with RFC 8446, Section
         <xref target="RFC8446" section="6.1" sectionFormat="bare" format="default"/>
         <xref target="RFC8446" format="default"/>.
       </t>
@@ -597,7 +551,7 @@ Client -----+---------------------------------+----------------->
             of 1. It <bcp14>MUST</bcp14> occur exactly once in every NTS-KE request and
             response. Its body consists of a sequence of 16-bit unsigned
             integers in network byte order. Each integer represents a Protocol
-            ID from the IANA "Network Time Security Next Protocols" registry 
+            ID from the IANA "Network Time Security Next Protocols" registry
             (<xref target="iana-nts-next-protocols" format="default"/>). The
             Critical Bit <bcp14>MUST</bcp14> be set.
           </t>
@@ -632,16 +586,6 @@ Client -----+---------------------------------+----------------->
           <t>
             The following error codes are defined:
           </t>
-
-<!-- [rfced]  In the following sentence, the Error code text
-does not match the text in the IANA Considerations section 
-nor the IANA registry ("Unrecognized Critical Extension").
-Which Error code description(s) should be updated?
-
-Current:
-
-      Error code 0 means "Unrecognized Critical Record".
--->
           <ul empty="true" spacing="normal">
             <li>
                 Error code 0 means "Unrecognized Critical Record". The
@@ -711,10 +655,10 @@ Current:
             other algorithm that the client prefers more.
           </t>
           <t>
-            Server implementations of 
-            <xref target="nts-extension-fields-for-ntpv4" format="default">NTS Extension Fields for NTPv4</xref> 
-            <bcp14>MUST</bcp14> support 
-            <xref target="RFC5297" format="default">AEAD_AES_SIV_CMAC_256</xref> 
+            Server implementations of
+            <xref target="nts-extension-fields-for-ntpv4" format="default">NTS Extension Fields for NTPv4</xref>
+            <bcp14>MUST</bcp14> support
+            <xref target="RFC5297" format="default">AEAD_AES_SIV_CMAC_256</xref>
             (Numeric Identifier 15). That is, if the client includes AEAD_AES_SIV_CMAC_256 in its
             AEAD Algorithm Negotiation record, and the server accepts Protocol
             ID 0 (NTPv4) in its NTS Next Protocol Negotiation record, then the
@@ -725,8 +669,8 @@ Current:
           <name>New Cookie for NTPv4</name>
           <t>
             The New Cookie for NTPv4 record has a Record Type number of 5. The
-            contents of its body <bcp14>SHALL</bcp14> be implementation-defined, 
-            and clients <bcp14>MUST NOT</bcp14> attempt to interpret them. 
+            contents of its body <bcp14>SHALL</bcp14> be implementation-defined,
+            and clients <bcp14>MUST NOT</bcp14> attempt to interpret them.
             See <xref target="suggested-format-for-nts-cookies" format="default"/> for a suggested
             construction.
           </t>
@@ -752,7 +696,7 @@ Current:
             identifiers <xref target="RFC6874" format="default"/>. If a label contains at least
             one non-ASCII character, it is an internationalized domain name,
             and an A-LABEL <bcp14>MUST</bcp14> be used as defined in
-            Section <xref target="RFC5890" section="2.3.2.1" sectionFormat="bare" format="default"/> 
+            Section <xref target="RFC5890" section="2.3.2.1" sectionFormat="bare" format="default"/>
             of RFC 5890 <xref target="RFC5890" format="default"/>.
             If the record contains a domain name, the recipient <bcp14>MUST</bcp14> treat it
             as a FQDN, e.g., by making sure it ends with a dot.
@@ -836,13 +780,6 @@ Current:
           a base of 1.5. Thus, the minimum interval in seconds, 't', for the nth
           retry is calculated with the following:
         </t>
-<!-- [rfced]  FYI, we have updated this line to make use of the 
-superscript formatting (new with xml2rfc v3). Superscript appears
-in the HTML and PDF outputs. Please let us know if you prefer otherwise.
-
-Original:
-              t = min(10 * 1.5^(n-1), 432000).
--->
         <ul empty="true" spacing="normal">
           <li>
               t = min(10 * 1.5<sup>n-1</sup>, 432000).
@@ -889,7 +826,7 @@ Original:
           Following a successful run of the NTS-KE protocol wherein Protocol
           ID 0 (NTPv4) is selected as a Next Protocol, two AEAD keys <bcp14>SHALL</bcp14> be
           extracted: a client-to-server (C2S) key and a server-to-client (S2C)
-          key. These keys <bcp14>SHALL</bcp14> be computed with the HKDF defined in 
+          key. These keys <bcp14>SHALL</bcp14> be computed with the HKDF defined in
           RFC 8446, Section <xref target="RFC8446" section="7.5" sectionFormat="bare" format="default"/>
           <xref target="RFC8446" format="default"/> using the
           following inputs:
@@ -945,7 +882,7 @@ Original:
           <li>
               An extension field that contains AEAD output (i.e., an
               authentication tag and possible ciphertext). The corresponding
-              plaintext, if non-empty, consists of some extension fields that 
+              plaintext, if non-empty, consists of some extension fields that
               benefit from both encryption and authentication.
             </li>
           <li>
@@ -999,7 +936,7 @@ Original:
           purpose is to carry information that enables the server to recompute
           keys and other session state without having to store any per-client
           state. The contents of its body <bcp14>SHALL</bcp14> be implementation-defined, and
-          clients <bcp14>MUST NOT</bcp14> attempt to interpret them. 
+          clients <bcp14>MUST NOT</bcp14> attempt to interpret them.
           See <xref target="suggested-format-for-nts-cookies" format="default"/> for a suggested
           construction.  The NTS Cookie extension field <bcp14>MUST NOT</bcp14> be included in
           NTP packets whose mode is other than 3 (client) or 4 (server).
@@ -1160,7 +1097,7 @@ Original:
           <li>
               Exactly one Unique Identifier extension field that <bcp14>MUST</bcp14> be
               authenticated, <bcp14>MUST NOT</bcp14> be encrypted, and whose contents <bcp14>MUST</bcp14> be
-              the output of a cryptographically secure random number generator 
+              the output of a cryptographically secure random number generator
               <xref target="RFC4086" format="default"/>.
           </li>
           <li>
@@ -1230,12 +1167,12 @@ Original:
                                   |
                                   |
 Server -----------+---------------+-----+----------------------->
-                  ^                      \          
-                 /                        \      
+                  ^                      \
+                 /                        \
   Time request  /                          \   Time response
-  (mode 3)     /                            \  (mode 4)  
-              /                              \   
-             /                                V 
+  (mode 3)     /                            \  (mode 4)
+              /                              \
+             /                                V
 Client -----+---------------------------------+----------------->
             |                                 |
             |                                 |
@@ -1250,7 +1187,7 @@ Client -----+---------------------------------+----------------->
 |- Generate AEAD tag of NTP message.|
 |- Add NTS Authentication and       |
 |  Encrypted Extension Fields EF.   |
-|- Transmit time request packet.    | 
+|- Transmit time request packet.    |
 +-----------------------------------+
 ]]></artwork>
         </figure>
@@ -1378,24 +1315,9 @@ Client -----+---------------------------------+----------------->
         construct NTS cookies. All normative requirements are stated in
         <xref target="new-cookie-for-ntpv4" format="default"/> and <xref target="nts-cookie-extension-field" format="default"/>.
       </t>
-
-<!-- [rfced]  In the sentence below, is "session ticket" rather 
-than "session cookie" meant? We note that RFC 5077 and its TLS 
-ticket mechanism have been deprecated by TLS 1.3 [RFC8446]. 
-
-For the reader's sake, perhaps it should be mentioned that RFC 5077 
-is obsolete? It could be added after this sentence, e.g., "(Note: 
-RFC 5077 has has been obsoleted by RFC 8446.)"
-
-Current:
-   The role of cookies in NTS is closely analogous to that of session
-   cookies in TLS.  Accordingly, the thematic resemblance of this
-   section to RFC 5077 [RFC5077] is deliberate, and the reader should
-   likewise take heed of its security considerations.   
--->
       <t>
         The role of cookies in NTS is closely analogous to that of session
-        cookies in TLS. Accordingly, the thematic resemblance of this section to
+        tickets in TLS. Accordingly, the thematic resemblance of this section to
         <xref target="RFC5077" format="default">RFC 5077</xref> is deliberate, and the reader
         should likewise take heed of its security considerations.
       </t>
@@ -1501,7 +1423,7 @@ https://www.iana.org/assignments/tls-extensiontype-values
         </dl>
       </section>
       <section numbered="true" toc="default">
-<!-- 
+<!--
 https://www.iana.org/assignments/tls-parameters
 -->
         <name>TLS Exporter Labels Registry</name>
@@ -1532,7 +1454,7 @@ https://www.iana.org/assignments/tls-parameters
         </table>
       </section>
       <section numbered="true" toc="default">
-<!-- 
+<!--
 https://www.iana.org/assignments/ntp-parameters
 -->
         <name>NTP Kiss-o'-Death Codes Registry</name>
@@ -1606,7 +1528,7 @@ https://www.iana.org/assignments/ntp-parameters
           "Network Time Security Key Establishment Record Types".
           Entries <bcp14>SHALL</bcp14> have the following fields:
         </t>
-<!-- [rfced] Sections 7.6 - 7.8: May we update this text to remove 
+<!-- [rfced] Sections 7.6 - 7.8: May we update this text to remove
 "SHALL" as shown? It seems unnecessary as the registries have been
 created with the requested fields and registration policies.
 
@@ -1710,7 +1632,7 @@ NEW:
         </table>
       </section>
       <section numbered="true" anchor="iana-nts-next-protocols" toc="default">
-<!-- 
+<!--
 https://www.iana.org/assignments/nts
 -->
         <name>Network Time Security Next Protocols Registry</name>
@@ -1771,7 +1693,7 @@ https://www.iana.org/assignments/nts
         </table>
       </section>
       <section numbered="true" toc="default">
-<!-- 
+<!--
 https://www.iana.org/assignments/nts
 -->
         <name>Network Time Security Error and Warning Codes Registries</name>
@@ -1934,10 +1856,10 @@ https://www.iana.org/assignments/nts
         <t>
           Certain nonstandard and/or deprecated features of the Network Time
           Protocol enable clients to send a request to a server that causes the
-          server to send a response much larger than the request. Servers that 
+          server to send a response much larger than the request. Servers that
           enable these features can be abused in order to amplify traffic volume
-          in DDoS attacks by sending them a request with a spoofed source IP. In
-          recent years, attacks of this nature have become an endemic nuisance.
+          in DDoS attacks by sending them a request with a spoofed source IP address.
+          In recent years, attacks of this nature have become an endemic nuisance.
         </t>
         <t>
           NTS is designed to avoid contributing any further to this problem by
@@ -1984,7 +1906,7 @@ https://www.iana.org/assignments/nts
           <li>
               Allow the system administrator to specify that certificates should
               <em>always</em> be strictly validated. Such a configuration is
-              appropriate on systems that have a battery-backed clock and that
+              appropriate on systems that have a battery-backed clock or that
               can reasonably prompt the user to manually set an
               approximately correct time if it appears to be needed.
             </li>
@@ -2012,7 +1934,7 @@ https://www.iana.org/assignments/nts
               Use multiple time sources. The ability to pass off an expired
               certificate is only useful to an adversary who has compromised the
               corresponding private key. If the adversary has compromised only a
-              minority of servers, NTP's selection algorithm (RFC 5905, Section 
+              minority of servers, NTP's selection algorithm (RFC 5905, Section
               <xref target="RFC5905" section="11.2.1" sectionFormat="bare" format="default"/>
               <xref target="RFC5905" format="default"/>) will protect the
               client from accepting bad time from the adversary-controlled
@@ -2090,7 +2012,8 @@ https://www.iana.org/assignments/nts
         not rectify legacy linkability issues that are already present in NTP.
         Thus, a client that requires unlinkability must also minimize
         information transmitted in a client query (mode 3) packet as described
-        in the document <xref target="I-D.ietf-ntp-data-minimization" format="default"/>.
+        in the document <xref target="I-D.ietf-ntp-data-minimization" format="default">
+        NTP Client Data Minimization</xref>.
         </t>
         <t>The unlinkability objective only holds for time synchronization
         traffic, as opposed to key establishment traffic. This implies that it
@@ -2110,8 +2033,9 @@ https://www.iana.org/assignments/nts
         <name>Confidentiality</name>
         <t>
 	  NTS does not protect the confidentiality of information in
-	  NTP's header fields. When clients implement 
-          <xref target="I-D.ietf-ntp-data-minimization" format="default"/>, client packet
+	  NTP's header fields. When clients implement
+    <xref target="I-D.ietf-ntp-data-minimization" format="default">
+    NTP Client Data Minimization</xref>, client packet
 	  headers do not contain any information that the client
 	  could conceivably wish to keep secret: one field is random,
 	  and all others are fixed. Information in server packet
@@ -2190,7 +2114,7 @@ https://www.iana.org/assignments/nts
             <date day="" month="September" year="2012"/>
           </front>
             <seriesInfo name="DOI" value="10.1109/ISPCS.2012.6336612"/>
-          <refcontent>2012 IEEE International Symposium on Precision Clock Synchronization 
+          <refcontent>2012 IEEE International Symposium on Precision Clock Synchronization
                       for Measurement, Control and Communication Proceedings, pp. 1-6</refcontent>
         </reference>
 
@@ -2209,7 +2133,7 @@ https://www.iana.org/assignments/nts
             <date month="September" year="2013"/>
           </front>
             <seriesInfo name="DOI" value="10.1109/ISPCS.2013.6644754"/>
-          <refcontent>2013 IEEE International Symposium on Precision Clock Synchronization 
+          <refcontent>2013 IEEE International Symposium on Precision Clock Synchronization
                       for Measurement, Control and Communication (ISPCS) Proceedings, pp. 1-6</refcontent>
         </reference>
       </references>
@@ -2217,35 +2141,25 @@ https://www.iana.org/assignments/nts
 
     <section anchor="Acknowledgments" numbered="false" toc="default">
       <name>Acknowledgments</name>
-
-<!-- [rfced] In the Acknowledgments, may we remove the parentheticals
-containing the ASCII equivalents of individuals' names?  (Such
-equivalents are typically not included when the non-ASCII characters 
-are within the Latin blocks.) For example:
-
-Current:   Patrik Fältström (Faltstrom),
-Suggested: Patrik Fältström,
--->
-
-      <t>The authors would like to thank <contact fullname="Richard Barnes"/>, 
-      <contact fullname="Steven Bellovin"/>, <contact fullname="Scott Fluhrer"/>, 
-      <contact fullname="Patrik Fältström (Faltstrom)"/>,
-      <contact fullname="Sharon Goldberg"/>, <contact fullname="Russ Housley"/>, 
-      <contact fullname="Benjamin Kaduk"/>, <contact fullname="Suresh Krishnan"/>, 
-      <contact fullname="Mirja Kühlewind (Kuehlewind)"/>, <contact fullname="Martin Langer"/>, 
+      <t>The authors would like to thank <contact fullname="Richard Barnes"/>,
+      <contact fullname="Steven Bellovin"/>, <contact fullname="Scott Fluhrer"/>,
+      <contact fullname="Patrik Fältström"/>,
+      <contact fullname="Sharon Goldberg"/>, <contact fullname="Russ Housley"/>,
+      <contact fullname="Benjamin Kaduk"/>, <contact fullname="Suresh Krishnan"/>,
+      <contact fullname="Mirja Kühlewind"/>, <contact fullname="Martin Langer"/>,
       <contact fullname="Barry Leiba"/>, <contact fullname="Miroslav Lichvar"/>,
-      <contact fullname="Aanchal Malhotra"/>, <contact fullname="Danny Mayer"/>, 
-      <contact fullname="Dave Mills"/>, <contact fullname="Sandra Murphy"/>, 
-      <contact fullname="Hal Murray"/>, <contact fullname="Karen O'Donoghue"/>, 
-      <contact fullname="Eric K. Rescorla"/>, <contact fullname="Kurt Roeckx"/>, 
-      <contact fullname="Stephen Roettger"/>, <contact fullname="Dan Romascanu"/>, 
-      <contact fullname="Kyle Rose"/>, <contact fullname="Rich Salz"/>, 
-      <contact fullname="Brian Sniffen"/>, <contact fullname="Susan Sons"/>, 
-      <contact fullname="Douglas Stebila"/>, <contact fullname="Harlan Stenn"/>, 
-      <contact fullname="Joachim Strömbergsson (Strombergsson)"/>, 
-      <contact fullname="Martin Thomson"/>, <contact fullname="Éric (Eric) Vyncke"/>, 
+      <contact fullname="Aanchal Malhotra"/>, <contact fullname="Danny Mayer"/>,
+      <contact fullname="Dave Mills"/>, <contact fullname="Sandra Murphy"/>,
+      <contact fullname="Hal Murray"/>, <contact fullname="Karen O'Donoghue"/>,
+      <contact fullname="Eric K. Rescorla"/>, <contact fullname="Kurt Roeckx"/>,
+      <contact fullname="Stephen Roettger"/>, <contact fullname="Dan Romascanu"/>,
+      <contact fullname="Kyle Rose"/>, <contact fullname="Rich Salz"/>,
+      <contact fullname="Brian Sniffen"/>, <contact fullname="Susan Sons"/>,
+      <contact fullname="Douglas Stebila"/>, <contact fullname="Harlan Stenn"/>,
+      <contact fullname="Joachim Strömbergsson"/>,
+      <contact fullname="Martin Thomson"/>, <contact fullname="Éric Vyncke"/>,
       <contact fullname="Richard Welty"/>, <contact fullname="Christer Weinigel"/>, and
-      <contact fullname="Magnus Westerlund"/> for contributions to this document 
+      <contact fullname="Magnus Westerlund"/> for contributions to this document
       and comments on the design of NTS.</t>
     </section>
   </back>
